@@ -1,0 +1,38 @@
+# --- Java & Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# --- Hibernate & Database ---
+# Ignorujemy pliki lokalnej bazy H2 (blog_db.mv.db, blog_db.trace.db)
+blog_db.*
+*.db
+
+# --- Neovim / Vim ---
+# Pliki tymczasowe i swapy
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-z][a-z]
+[._]ss[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# --- LSP & IDE Tools ---
+# Jeśli używasz jdtls, może tworzyć te foldery
+.settings/
+.project
+.classpath
+.factorypath
+.metadata/
+.lsp/
+
+# --- Lombok ---
+# Jeśli Lombok ściągnął jar do głównego katalogu
+lombok.jar
+
+# --- Systemowe ---
+.DS_Store
+Thumbs.db
