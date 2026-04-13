@@ -14,9 +14,6 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Comment extends Post {
 
-    private int upvotes;
-    private int downvotes;
-
     @ManyToOne
     @JoinColumn(name = "parentPost_id")
     private Post parentPost;

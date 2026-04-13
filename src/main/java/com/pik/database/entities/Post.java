@@ -26,8 +26,6 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
-    private String title;
-
     private String content;
 
     private LocalDateTime creationDate;
@@ -35,4 +33,8 @@ public class Post {
     private boolean edited;
 
     private LocalDateTime lastEditionDate;
+
+    private int upvotes;
+    private int downvotes;
+
 }

@@ -1,5 +1,7 @@
 package com.pik.database.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,7 +16,11 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Article extends Post {
 
+    private String title;
+
     @ManyToOne
     @JoinColumn(name = "category")
     private Category category;
+
+    private List<String> tags;
 }

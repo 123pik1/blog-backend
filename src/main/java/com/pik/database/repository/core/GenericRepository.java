@@ -1,4 +1,4 @@
-package com.pik.database.services.core;
+package com.pik.database.repository.core;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,12 +11,12 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class GenericDatabseService<T> {
+public class GenericRepository<T> {
 
     protected final SessionFactory factory;
     private final Class<T> entityClass;
 
-    protected GenericDatabseService(SessionFactory factory, Class<T> entityClass) {
+    protected GenericRepository(SessionFactory factory, Class<T> entityClass) {
         this.factory = factory;
         this.entityClass = entityClass;
     }
