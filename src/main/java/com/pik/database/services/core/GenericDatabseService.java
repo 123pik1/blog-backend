@@ -1,4 +1,4 @@
-package com.pik.database;
+package com.pik.database.services.core;
 
 import java.util.List;
 import java.util.function.Consumer;
