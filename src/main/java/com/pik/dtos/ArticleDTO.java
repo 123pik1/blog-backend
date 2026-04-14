@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class ArticleDTO {
 
+    // from Post
     private long id;
     private String author;
     private String content;
@@ -18,7 +19,12 @@ public class ArticleDTO {
     private boolean edited;
     private LocalDateTime lastEditDate;
 
+    private List<CommentDTO> comments;
+
+    // From Article
+    private String title;
+
     private List<String> tags;
 
-    private List<CommentDTO> comments;
+    private CategoryDTO category;
 }
