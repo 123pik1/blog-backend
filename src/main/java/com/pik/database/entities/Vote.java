@@ -1,5 +1,6 @@
 package com.pik.database.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +23,6 @@ public class Vote {
     @ManyToOne
     private Post post;
 
+    @Column(name = "vote_value")
     private int value;
 }
