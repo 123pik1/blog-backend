@@ -7,5 +7,5 @@ import com.pik.database.entities.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-
+    Category findByName(String name);
 }

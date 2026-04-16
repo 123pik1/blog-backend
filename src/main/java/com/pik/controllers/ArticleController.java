@@ -25,13 +25,13 @@ public class ArticleController {
     }
 
     @GetMapping("/all")
-    public List<ArticleDTO> getAllArticles() {
-        return articleService.getAll();
+    public ResponseEntity<List<ArticleDTO>> getAllArticles() {
+        return ResponseEntity.status(HttpStatus.OK).body(articleService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ArticleDTO getArticle(@PathVariable Long id) {
-        return articleService.findById(id);
+    public ResponseEntity<ArticleDTO> getArticle(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(articleService.findById(id));
     }
 
     @PostMapping

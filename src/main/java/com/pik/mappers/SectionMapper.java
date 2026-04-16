@@ -10,4 +10,10 @@ public class SectionMapper implements GenericMapper<Section, SectionDTO> {
 
         return section;
     }
+
+    public SectionDTO toDto(Section section) {
+        SectionDTO dto = new SectionDTO();
+
+        return dto;
+    }
 }

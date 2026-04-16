@@ -28,4 +28,5 @@ public class User {
 
     private String description;
 
+    private String role;
 }

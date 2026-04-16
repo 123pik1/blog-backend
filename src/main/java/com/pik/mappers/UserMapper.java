@@ -15,6 +15,7 @@ public class UserMapper implements GenericMapper<User, UserDTO> {
         user.setCanBlog(dto.getCanBlog());
         user.setUsername(dto.getUsername());
         user.setDescription(dto.getDescription());
+        user.setRole(dto.getRole());
         // Password in other place
         return user;
     }
@@ -25,6 +26,7 @@ public class UserMapper implements GenericMapper<User, UserDTO> {
         dto.setUsername(entity.getUsername());
         dto.setCanBlog(entity.getCanBlog());
         dto.setId(entity.getId());
+        dto.setRole(entity.getRole());
         return dto;
     }
 

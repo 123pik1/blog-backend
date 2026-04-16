@@ -11,12 +11,15 @@ import com.pik.mappers.UserMapper;
 
 @Service
 public class UserService extends GenericService<User, UserDTO, UserMapper> {
+    private final UserRepository userRepository;
+
     UserService(UserRepository repository, UserMapper mapper) {
         super(repository, mapper);
+        userRepository = repository;
     }
 
     public UserDTO findByUsername(String username) {
-        User entity = repository.findByUsername(username);
+        User entity = userRepository.findByUsername(username).get();
         if (entity == null)
             return null;
         return mapToDTO(entity);
