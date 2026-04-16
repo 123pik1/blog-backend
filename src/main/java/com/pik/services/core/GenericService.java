@@ -5,11 +5,15 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class GenericService<T, DTO> {
-    protected final JpaRepository<T, Long> repository;
+import com.pik.mappers.core.GenericMapper;
 
-    protected GenericService(JpaRepository<T, Long> repository) {
+public abstract class GenericService<T, DTO, MAPPER extends GenericMapper<T, DTO>> {
+    protected final JpaRepository<T, Long> repository;
+    protected final MAPPER mapper;
+
+    protected GenericService(JpaRepository<T, Long> repository, MAPPER mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     protected T saveEntity(T entity) {
@@ -39,7 +43,11 @@ public abstract class GenericService<T, DTO> {
         return mapToDTO(entity);
     }
 
-    protected abstract T mapToEntity(DTO dto);
+    protected T mapToEntity(DTO dto) {
+        return mapper.toEntity(dto);
+    }
 
-    protected abstract DTO mapToDTO(T entity);
+    protected DTO mapToDTO(T entity) {
+        return mapper.toDto(entity);
+    }
 }

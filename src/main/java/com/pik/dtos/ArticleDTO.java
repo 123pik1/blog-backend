@@ -18,4 +18,5 @@ public class ArticleDTO {
     private String title;//
     private List<String> tags; //
     private CategoryDTO category;//
+    private Boolean isPublic;
 }

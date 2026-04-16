@@ -24,7 +24,7 @@ public class User {
     @Column(length = 60)
     private String passwordHash;
 
-    private boolean canBlog;
+    private Boolean canBlog;
 
     private String description;
 

@@ -1,13 +1,13 @@
 package com.pik.dtos;
 
-import com.pik.database.entities.Section;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class CategoryDTO {
+public class SectionDTO {
     private Long id;
     private String name;
     private String description;
-    private String sectionName;
+    List<CategoryDTO> categories;
 }

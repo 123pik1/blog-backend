@@ -1,6 +1,7 @@
 package com.pik.mappers;
 
 import com.pik.database.entities.Photo;
+import com.pik.database.entities.Post;
 import com.pik.dtos.PhotoDTO;
 import com.pik.mappers.core.GenericMapper;
 import com.pik.services.PostService;
@@ -26,7 +27,7 @@ public class PhotoMapper implements GenericMapper<Photo, PhotoDTO> {
 
         photo.setId(dto.getId());
         photo.setDescription(dto.getDescription());
-        photo.setPost(postService.findById(dto.getId()));
+        photo.setPost((Post) (postService.findById(dto.getId())));
 
         return photo;
     }

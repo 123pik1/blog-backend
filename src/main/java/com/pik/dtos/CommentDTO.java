@@ -14,7 +14,7 @@ public class CommentDTO {
 
     private String content;
     private LocalDateTime creationDate;
-    private boolean edited;
+    private Boolean edited;
     private LocalDateTime lastEditionDate;
 
     private RatingDTO rating;

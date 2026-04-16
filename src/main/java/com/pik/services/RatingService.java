@@ -2,10 +2,13 @@ package com.pik.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.pik.database.entities.Vote;
 import com.pik.database.repository.VoteRepository;
 import com.pik.dtos.RatingDTO;
 
+@Service
 public class RatingService {
     VoteRepository repository;
 

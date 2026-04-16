@@ -18,6 +18,7 @@ public class Article extends Post {
 
     private String title;
 
+    private boolean isPublic;
     @ManyToOne
     @JoinColumn(name = "category")
     private Category category;

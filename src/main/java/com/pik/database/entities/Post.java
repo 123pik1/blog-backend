@@ -30,7 +30,7 @@ public class Post {
 
     private LocalDateTime creationDate;
 
-    private boolean edited;
+    private Boolean edited;
 
     private LocalDateTime lastEditionDate;
 
