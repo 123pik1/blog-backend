@@ -1,12 +1,9 @@
 package com.pik.database.repository;
 
-import javax.xml.stream.events.Comment;
+import org.springframework.stereotype.Repository;
 
-import org.hibernate.SessionFactory;
+import com.pik.database.entities.Comment;
 
-public class CommentRepository extends PostRepository {
-    CommentRepository(SessionFactory factory) {
-        super(factory, Comment.class);
-    }
-
+@Repository
+public interface CommentRepository extends PostRepository<Comment> {
 }

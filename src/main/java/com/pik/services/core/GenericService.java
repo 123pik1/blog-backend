@@ -1,20 +1,39 @@
 package com.pik.services.core;
 
-import com.pik.database.repository.core.GenericRepository;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class GenericService<T, DTO> {
-    protected final GenericRepository<T> repository;
+    protected final JpaRepository<T, Long> repository;
 
-    protected GenericService(GenericRepository<T> repository) {
+    protected GenericService(JpaRepository<T, Long> repository) {
         this.repository = repository;
     }
 
-    public void save(T entity) {
-        repository.save(entity);
+    protected T saveEntity(T entity) {
+        return repository.save(entity);
+    }
+
+    public DTO save(DTO dto) {
+        return mapToDTO(saveEntity(mapToEntity(dto)));
+    }
+
+    public List<DTO> getAll() {
+
+        List<DTO> dtos = new ArrayList<DTO>();
+        List<T> entities = repository.findAll();
+
+        for (T entity : entities) {
+            dtos.add(mapToDTO(entity));
+        }
+
+        return dtos;
     }
 
     public DTO findById(Long id) {
-        T entity = repository.findById(id);
+        T entity = repository.findById(id).orElse(null);
         if (entity == null)
             return null;
         return mapToDTO(entity);

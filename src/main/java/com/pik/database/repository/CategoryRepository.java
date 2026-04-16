@@ -1,13 +1,11 @@
 package com.pik.database.repository;
 
-import org.hibernate.SessionFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.pik.database.entities.Category;
-import com.pik.database.repository.core.GenericRepository;
 
-public class CategoryRepository extends GenericRepository<Category> {
-    CategoryRepository(SessionFactory factory) {
-        super(factory, Category.class);
-    }
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 }

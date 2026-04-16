@@ -1,9 +1,12 @@
 package com.pik.services;
 
+import org.springframework.stereotype.Service;
+
 import com.pik.database.entities.Comment;
 import com.pik.database.repository.CommentRepository;
 import com.pik.dtos.CommentDTO;
 
+@Service
 public class CommentService extends PostService<Comment, CommentDTO> {
     CommentService(CommentRepository repository) {
         super(repository);

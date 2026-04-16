@@ -7,24 +7,15 @@ import lombok.Data;
 
 @Data
 public class ArticleDTO {
-
-    // from Post
-    private long id;
-    private String author;
-    private String content;
-    private LocalDateTime creationDate;
-
-    private RatingDTO rating;
-
-    private boolean edited;
-    private LocalDateTime lastEditDate;
-
-    private List<CommentDTO> comments;
-
-    // From Article
-    private String title;
-
-    private List<String> tags;
-
-    private CategoryDTO category;
+    private Long id; //
+    private String author; //
+    private String content; //
+    private LocalDateTime creationDate; //
+    private RatingDTO rating; //
+    private Boolean edited; //
+    private LocalDateTime lastEditDate; //
+    private List<CommentDTO> comments; //
+    private String title;//
+    private List<String> tags; //
+    private CategoryDTO category;//
 }

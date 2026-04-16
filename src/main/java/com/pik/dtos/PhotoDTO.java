@@ -7,5 +7,5 @@ public class PhotoDTO {
     private String localistion;
     private String description;
     private Long id;
-
+    private Long postId;
 }

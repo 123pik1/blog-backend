@@ -34,7 +34,7 @@ public class Post {
 
     private LocalDateTime lastEditionDate;
 
-    private int upvotes;
-    private int downvotes;
+    // private int upvotes;
+    // private int downvotes;
 
 }
