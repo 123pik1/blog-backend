@@ -27,6 +27,7 @@ public class UserMapper implements GenericMapper<User, UserDTO> {
         dto.setCanBlog(entity.getCanBlog());
         dto.setId(entity.getId());
         dto.setRole(entity.getRole());
+        dto.setCreatedAt(entity.getCreatedAt());
         return dto;
     }
 

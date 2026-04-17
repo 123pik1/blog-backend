@@ -2,6 +2,7 @@ package com.pik.database.entities;
 
 import java.util.List;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -23,5 +24,6 @@ public class Article extends Post {
     @JoinColumn(name = "category")
     private Category category;
 
+    @ElementCollection
     private List<String> tags;
 }

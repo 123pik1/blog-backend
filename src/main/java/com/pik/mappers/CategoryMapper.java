@@ -21,7 +21,7 @@ public class CategoryMapper implements GenericMapper<Category, CategoryDTO> {
         cat.setId(dto.getId());
         cat.setName(dto.getName());
         cat.setDescription(dto.getDescription());
-        cat.setSection(sectionRepository.findByName(dto.getSectionName()));
+        cat.setSection(sectionRepository.findById(dto.getSectionId()).get());
         return cat;
     }
 
@@ -30,7 +30,7 @@ public class CategoryMapper implements GenericMapper<Category, CategoryDTO> {
         dto.setId(cat.getId());
         dto.setDescription(cat.getDescription());
         dto.setName(cat.getName());
-        dto.setSectionName(cat.getSection().getName());
+        dto.setSectionId(cat.getSection().getId());
         return dto;
     }
 }

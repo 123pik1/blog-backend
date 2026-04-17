@@ -9,5 +9,6 @@ public class CategoryDTO {
     private Long id;
     private String name;
     private String description;
-    private String sectionName;
+    // private String sectionName;
+    private Long sectionId;
 }

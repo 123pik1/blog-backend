@@ -36,3 +36,5 @@ lombok.jar
 # --- Systemowe ---
 .DS_Store
 Thumbs.db
+
+.pgdata/

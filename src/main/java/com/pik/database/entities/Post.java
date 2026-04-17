@@ -20,19 +20,19 @@ import lombok.Data;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    protected Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User author;
+    protected User author;
 
-    private String content;
+    protected String content;
 
-    private LocalDateTime creationDate;
+    protected LocalDateTime creationDate;
 
-    private Boolean edited;
+    protected Boolean edited;
 
-    private LocalDateTime lastEditionDate;
+    protected LocalDateTime lastEditionDate;
 
     // private int upvotes;
     // private int downvotes;

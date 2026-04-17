@@ -1,17 +1,13 @@
 package com.pik.mappers;
 
+import org.springframework.stereotype.Component;
+
 import com.pik.database.entities.Photo;
-import com.pik.database.entities.Post;
 import com.pik.dtos.PhotoDTO;
 import com.pik.mappers.core.GenericMapper;
-import com.pik.services.PostService;
 
+@Component
 public class PhotoMapper implements GenericMapper<Photo, PhotoDTO> {
-    PostService postService;
-
-    PhotoMapper(PostService postService) {
-        this.postService = postService;
-    }
 
     public PhotoDTO toDto(Photo entity) {
         PhotoDTO dto = new PhotoDTO();
@@ -27,7 +23,6 @@ public class PhotoMapper implements GenericMapper<Photo, PhotoDTO> {
 
         photo.setId(dto.getId());
         photo.setDescription(dto.getDescription());
-        photo.setPost((Post) (postService.findById(dto.getId())));
 
         return photo;
     }

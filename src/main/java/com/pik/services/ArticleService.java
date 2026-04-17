@@ -16,21 +16,4 @@ public class ArticleService extends PostService<Article, ArticleDTO, ArticleMapp
         super(repository, mapper);
     }
 
-    @Override
-    protected Article mapToEntity(ArticleDTO dto) {
-        Article article = new Article();
-        article.setTitle(dto.getTitle());
-        article.setTags(dto.getTags());
-        // article.setCategory(dto.getCategory());
-        article.setId(dto.getId());
-        // article.setAuthor(dto.getAuthor());
-        article.setEdited(dto.getEdited());
-        return new Article();
-    }
-
-    @Override
-    protected ArticleDTO mapToDTO(Article entity) {
-
-        return new ArticleDTO();
-    }
 }
