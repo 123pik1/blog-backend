@@ -1,5 +1,8 @@
 package com.pik.services;
 
+import java.time.LocalDateTime;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.pik.database.entities.Article;
@@ -16,4 +19,26 @@ public class ArticleService extends PostService<Article, ArticleDTO, ArticleMapp
         super(repository, mapper);
     }
 
+    public ArticleDTO createArticle(ArticleDTO articleDto, Authentication authentication) {
+
+        String username = authentication.getName();
+        articleDto.setAuthor(username);
+        articleDto.setCreationDate(LocalDateTime.now());
+        articleDto.setEdited(false);
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+
+        System.out.println(articleDto);
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+
+        return save(articleDto);
+    }
 }

@@ -31,12 +31,12 @@ public class AuthService {
 
     public LoginResponse login(LoginDTO loginDTO) {
         Authentication auth = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getLogin(), loginDTO.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
 
         LoginResponse response = new LoginResponse();
 
         response.setToken(jwtUtils.generateToken(auth));
-        response.setUsername(loginDTO.getLogin());
+        response.setUsername(loginDTO.getUsername());
 
         return response;
     }
@@ -53,7 +53,7 @@ public class AuthService {
         userRepository.save(newUser);
 
         LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setLogin(registerDTO.getUsername());
+        loginDTO.setUsername(registerDTO.getUsername());
         loginDTO.setPassword(registerDTO.getPassword());
         response = login(loginDTO);
 

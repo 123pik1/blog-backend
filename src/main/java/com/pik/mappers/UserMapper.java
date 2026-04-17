@@ -10,6 +10,8 @@ import com.pik.mappers.core.GenericMapper;
 public class UserMapper implements GenericMapper<User, UserDTO> {
 
     public User toEntity(UserDTO dto) {
+        if (dto == null)
+            return new User();
         User user = new User();
         user.setId(dto.getId());
         user.setCanBlog(dto.getCanBlog());

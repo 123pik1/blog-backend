@@ -1,13 +1,17 @@
 package com.pik.utils;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -22,8 +26,13 @@ public class JwtUtils {
     public String generateToken(Authentication authentication) {
         // UserDetails userDetails = (UserDetails) authentication.getDetails();
         String username = authentication.getName();
+
+        List<String> autorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
         return Jwts.builder()
                 .subject(username)
+                .claim("roles", autorities)
                 .issuedAt(new Date())
                 .expiration(new Date((new Date().getTime() + jwtExpirationTime)))
                 .signWith(key)
@@ -45,4 +54,10 @@ public class JwtUtils {
         return false;
     }
 
+    public List<GrantedAuthority> getAuthoritiesFromToken(String token) {
+        Claims claims = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
+
+        List<String> roles = claims.get("roles", List.class);
+        return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
 }

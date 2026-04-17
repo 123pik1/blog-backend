@@ -1,8 +1,11 @@
 package com.pik.mappers;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 import com.pik.database.entities.Category;
+import com.pik.database.entities.Section;
 import com.pik.database.repository.SectionRepository;
 import com.pik.dtos.CategoryDTO;
 import com.pik.mappers.core.GenericMapper;
@@ -17,11 +20,15 @@ public class CategoryMapper implements GenericMapper<Category, CategoryDTO> {
     }
 
     public Category toEntity(CategoryDTO dto) {
+        if (dto == null)
+            return new Category();
         Category cat = new Category();
         cat.setId(dto.getId());
         cat.setName(dto.getName());
         cat.setDescription(dto.getDescription());
-        cat.setSection(sectionRepository.findById(dto.getSectionId()).get());
+        Optional<Section> section = sectionRepository.findById(dto.getSectionId());
+        if (section.isPresent())
+            cat.setSection(section.get());
         return cat;
     }
 
@@ -30,7 +37,8 @@ public class CategoryMapper implements GenericMapper<Category, CategoryDTO> {
         dto.setId(cat.getId());
         dto.setDescription(cat.getDescription());
         dto.setName(cat.getName());
-        dto.setSectionId(cat.getSection().getId());
+        if (cat.getSection() != null)
+            dto.setSectionId(cat.getSection().getId());
         return dto;
     }
 }

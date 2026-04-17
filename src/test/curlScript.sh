@@ -44,7 +44,7 @@ curl -X POST "$API_URL/articles" \
     -d '{
            "title": "Mój pierwszy wpis",
            "content": "Treść artykułu o Springu",
-           "categoryId": 1,
+           "category": 1,
            "tags": ["spring", "java", "backend"]
          }'
 echo -e "\n"

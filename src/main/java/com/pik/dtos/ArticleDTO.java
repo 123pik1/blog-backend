@@ -17,6 +17,12 @@ public class ArticleDTO {
     private List<CommentDTO> comments; //
     private String title;//
     private List<String> tags; //
-    private CategoryDTO category;//
+    private Long category;//
     private Boolean isPublic;
+
+    public Boolean getIsPublic() {
+        if (isPublic == null)
+            return false;
+        return isPublic;
+    }
 }
