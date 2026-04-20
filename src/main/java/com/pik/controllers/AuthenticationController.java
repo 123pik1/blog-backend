@@ -2,6 +2,7 @@ package com.pik.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pik.dtos.LoginDTO;
 import com.pik.dtos.LoginResponse;
 import com.pik.dtos.RegisterDTO;
+import com.pik.dtos.UserDTO;
 import com.pik.services.AuthService;
 
 @RestController
@@ -33,4 +35,5 @@ public class AuthenticationController {
         LoginResponse response = authService.register(registerDTO);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
 }

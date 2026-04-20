@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,13 +16,16 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 
 @Component
 public class JwtUtils {
-    private final String jwtSecret = "twoj_bardzo_dlugi_i_bezpieczny_klucz_ktory_ma_przynajmniej_32_znaki";
-    private final int jwtExpirationTime = 3600000;
+    @Value("${app.jwt.secret}")
+    private String jwtSecret;
+    @Value("${app.jwt.expiration-ms}")
+    private int jwtExpirationTime;
 
-    private final SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    private SecretKey key;
 
     public String generateToken(Authentication authentication) {
         // UserDetails userDetails = (UserDetails) authentication.getDetails();
@@ -37,6 +41,12 @@ public class JwtUtils {
                 .expiration(new Date((new Date().getTime() + jwtExpirationTime)))
                 .signWith(key)
                 .compact();
+    }
+
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+
     }
 
     // Getting login from token

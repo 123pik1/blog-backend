@@ -3,6 +3,7 @@ package com.pik.services;
 import java.time.LocalDateTime;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.pik.database.entities.Article;
@@ -25,20 +26,33 @@ public class ArticleService extends PostService<Article, ArticleDTO, ArticleMapp
         articleDto.setAuthor(username);
         articleDto.setCreationDate(LocalDateTime.now());
         articleDto.setEdited(false);
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-
+        articleDto.setId(null);
         System.out.println(articleDto);
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------");
-
         return save(articleDto);
+    }
+
+    public ArticleDTO updateArticle(ArticleDTO newArticle) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        ArticleDTO existingArticle = findById(newArticle.getId());
+
+        if (existingArticle == null)
+            return null;
+
+        if (!existingArticle.getAuthor().equals(username)
+                && !authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            return null;
+        }
+        if (newArticle.getTags() != null && !newArticle.getTags().isEmpty())
+            existingArticle.setTags(newArticle.getTags());
+        if (newArticle.getTitle() != null && !newArticle.getTitle().isEmpty())
+            existingArticle.setTitle(newArticle.getTitle());
+        if (newArticle.getContent() != null && !newArticle.getContent().isEmpty())
+            existingArticle.setContent(newArticle.getContent());
+        if (newArticle.getCategory() != null)
+            existingArticle.setCategory(newArticle.getCategory());
+        existingArticle.setEdited(true);
+        existingArticle.setLastEditDate(LocalDateTime.now());
+        return save(existingArticle);
     }
 }
