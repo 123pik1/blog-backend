@@ -2,6 +2,7 @@ package com.pik.database.entities;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     protected User author;
 
+    @Column(columnDefinition = "TEXT")
     protected String content;
 
     protected LocalDateTime creationDate;
